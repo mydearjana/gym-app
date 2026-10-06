@@ -330,12 +330,26 @@ function toggleLike(btn) {
     }
 }
 
-// Mock Video Upload Trigger
+// Real Video File Picker Handlers
 function triggerVideoUpload() {
+    const fileInput = document.getElementById('pr-video-file');
+    if (fileInput) {
+        fileInput.click();
+    }
+}
+
+function handleFileSelect(input) {
+    const file = input.files[0];
     const dropzone = document.getElementById('upload-zone');
-    dropzone.classList.add('selected');
-    document.getElementById('upload-status-title').innerText = '✓ تم اختيار الفيديو: PR_Video_55kg.mp4';
-    showToast('تم اختيار الفيديو بنجاح!');
+    const statusTitle = document.getElementById('upload-status-title');
+
+    if (file) {
+        if (dropzone) dropzone.classList.add('selected');
+        if (statusTitle) {
+            statusTitle.innerText = `✔ تم اختيار الفيديو: ${file.name}`;
+        }
+        showToast('تم اختيار فيديو التمرين بنجاح!');
+    }
 }
 
 // Start Challenge
@@ -351,6 +365,7 @@ function handlePRSubmit(e) {
 
     const exKey = document.getElementById('pr-exercise-select').value;
     const weightVal = parseFloat(document.getElementById('pr-weight-input').value);
+    const videoFileInput = document.getElementById('pr-video-file');
 
     if (!weightVal || weightVal <= 0) {
         showToast('يرجى إدخال وزن صحيح', 'info');
@@ -380,10 +395,16 @@ function handlePRSubmit(e) {
 
     showToast(`تم رفع فيديو الـ PR (${weightVal} KG) للمراجعة من الكابتن!`);
 
+    // Reset Form & File Input
     document.getElementById('pr-weight-input').value = '';
     document.getElementById('pr-reps-input').value = '';
-    document.getElementById('upload-zone').classList.remove('selected');
-    document.getElementById('upload-status-title').innerText = 'اضغط لاختيار فيديو التمرين من المعرض';
+    if (videoFileInput) videoFileInput.value = '';
+    
+    const dropzone = document.getElementById('upload-zone');
+    if (dropzone) dropzone.classList.remove('selected');
+    
+    const statusTitle = document.getElementById('upload-status-title');
+    if (statusTitle) statusTitle.innerText = 'اضغط لاختيار فيديو التمرين من المعرض';
 
     loadExerciseData(exKey);
     renderProfilePRs();

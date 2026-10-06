@@ -68,7 +68,7 @@
                     <div class="target-title" id="target-banner-title">ترتيبك #7 — المنافس التالي: Ahmed Hassan</div>
                     <div class="target-footer">
                         <span class="target-weight-info" id="target-current-weight">الوزن الحالي له: 50 kg</span>
-                        <button class="btn-action-sm" onclick="startChallenge('pushdown')">تحداه الآن ⚔️️</button>
+                        <button class="btn-action-sm" onclick="startChallenge('pushdown')">تحداه الآن ⚔️</button>
                     </div>
                 </div>
 
@@ -150,6 +150,9 @@
 
                     <div class="form-group">
                         <label class="form-label">فيديو التوثيق</label>
+                        <!-- حقل رفع فيديو حقيقي مخفي يفتح معرِض الهاتف -->
+                        <input type="file" id="pr-video-file" accept="video/*" style="display: none;" onchange="handleFileSelect(this)">
+                        
                         <div class="upload-dropzone" id="upload-zone" onclick="triggerVideoUpload()">
                             <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
                             <div class="upload-title" id="upload-status-title">اضغط لاختيار فيديو التمرين من المعرض</div>
@@ -257,7 +260,7 @@
 
         </main>
 
-        <!-- EDIT PROFILE MODAL (WITH GYM & EXPERIENCE EDITING) -->
+        <!-- EDIT PROFILE MODAL -->
         <div id="edit-profile-modal" class="modal-overlay hidden">
             <div class="modal-card">
                 <div class="modal-header">
@@ -286,15 +289,14 @@
                         </div>
                     </div>
 
-                    <!-- تعديل سنين وشهور الخبرة -->
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label">سنوات الخبرة</label>
-                            <input type="number" min="0" max="40" id="edit-exp-years-input" class="form-control" placeholder="مثال: 2">
+                            <input type="number" min="0" max="40" id="edit-exp-years-input" class="form-control" placeholder="2">
                         </div>
                         <div class="form-group">
                             <label class="form-label">أشهر إضافية</label>
-                            <input type="number" min="0" max="11" id="edit-exp-months-input" class="form-control" placeholder="مثال: 6">
+                            <input type="number" min="0" max="11" id="edit-exp-months-input" class="form-control" placeholder="6">
                         </div>
                     </div>
 
@@ -303,31 +305,31 @@
             </div>
         </div>
 
-        <!-- APP NAVBAR (RESTORED EXACT ORIGINAL DESIGN) -->
+        <!-- APP NAVBAR (STACKED LAYOUT FIX) -->
         <nav class="app-navbar">
-            <button id="nav-rank" class="nav-link active" onclick="switchTab('nav-rank', 'tab-leaderboard')">
-                <span class="nav-icon">🏆</span>
-                <span class="nav-label">الترتيب</span>
-            </button>
+            <div id="nav-rank" class="nav-link active" onclick="switchTab('nav-rank', 'tab-leaderboard')">
+                <div class="nav-icon">🏆</div>
+                <div class="nav-label">الترتيب</div>
+            </div>
 
-            <button id="nav-feed" class="nav-link" onclick="switchTab('nav-feed', 'tab-feed')">
-                <span class="nav-icon">🔥</span>
-                <span class="nav-label">النشاطات</span>
-            </button>
+            <div id="nav-feed" class="nav-link" onclick="switchTab('nav-feed', 'tab-feed')">
+                <div class="nav-icon">🔥</div>
+                <div class="nav-label">النشاطات</div>
+            </div>
 
-            <button class="nav-fab-btn" aria-label="تسجيل PR جديد" onclick="switchTab('nav-rank', 'tab-record')">
-                <span class="fab-plus">+</span>
-            </button>
+            <div class="nav-fab-btn" onclick="switchTab('nav-rank', 'tab-record')">
+                <div class="fab-plus">+</div>
+            </div>
 
-            <button id="nav-challenges" class="nav-link" onclick="switchTab('nav-challenges', 'tab-challenges')">
-                <span class="nav-icon">⚔️</span>
-                <span class="nav-label">تحديات</span>
-            </button>
+            <div id="nav-challenges" class="nav-link" onclick="switchTab('nav-challenges', 'tab-challenges')">
+                <div class="nav-icon">⚔️</div>
+                <div class="nav-label">تحديات</div>
+            </div>
 
-            <button id="nav-profile" class="nav-link" onclick="switchTab('nav-profile', 'tab-profile')">
-                <span class="nav-icon blue-user-icon">👤</span>
-                <span class="nav-label">بروفايلي</span>
-            </button>
+            <div id="nav-profile" class="nav-link" onclick="switchTab('nav-profile', 'tab-profile')">
+                <div class="nav-icon blue-user-icon">👤</div>
+                <div class="nav-label">بروفايلي</div>
+            </div>
         </nav>
 
     </div>
